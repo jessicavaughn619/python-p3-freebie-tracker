@@ -22,9 +22,9 @@ if __name__ == "__main__":
 # Create fake companies
     companies = []
 
-    for _ in range(5):
+    for _ in range(3):
         company = Company(
-            name=fake.name(),
+            name=fake.company(),
             founding_year=random.randint(1950, 2022)
         )
 
@@ -37,7 +37,7 @@ if __name__ == "__main__":
 
     devs = []
 
-    for _ in range(10):
+    for _ in range(5):
         dev = Dev(
             name=f'{fake.first_name()} {fake.last_name()}'
         )
@@ -53,13 +53,13 @@ if __name__ == "__main__":
 
     freebies = []
 
-    for dev in devs:
-        for _ in range(random.randint(1, 3)):
+    for company in companies:
+        for _ in range(random.randint(1, 2)):
             freebie = Freebie(
                 item_name=random.choice(cool_items),
                 value=random.randint(1, 100),
-                company_id=random.randint(1, 5),
-                dev_id=dev.id
+                company_id=company.id,
+                dev_id=random.randint(1, 5)
             )
 
             freebies.append(freebie)
