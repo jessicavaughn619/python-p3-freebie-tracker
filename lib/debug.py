@@ -10,12 +10,8 @@ if __name__ == '__main__':
     Session = sessionmaker(bind=engine)
     session = Session()
 
-    first_freebie = session.query(Freebie).first()
-
-
-
-
-
+    company_id = session.query(Company.id)
+    match = session.query(Freebie).filter_by(company_id=company_id)
 
 
 

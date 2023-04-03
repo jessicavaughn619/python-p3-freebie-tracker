@@ -22,7 +22,7 @@ if __name__ == "__main__":
 # Create fake companies
     companies = []
 
-    for _ in range(50):
+    for _ in range(5):
         company = Company(
             name=fake.name(),
             founding_year=random.randint(1950, 2022)
@@ -37,7 +37,7 @@ if __name__ == "__main__":
 
     devs = []
 
-    for _ in range(100):
+    for _ in range(10):
         dev = Dev(
             name=f'{fake.first_name()} {fake.last_name()}'
         )
@@ -54,18 +54,18 @@ if __name__ == "__main__":
     freebies = []
 
     for dev in devs:
-        for _ in range(random.randint(1, 10)):
+        for _ in range(random.randint(1, 3)):
             freebie = Freebie(
                 item_name=random.choice(cool_items),
                 value=random.randint(1, 100),
-                company_id=company.id,
+                company_id=random.randint(1, 5),
                 dev_id=dev.id
             )
 
             freebies.append(freebie)
 
-        session.bulk_save_objects(freebies)
-        session.commit()
+            session.bulk_save_objects(freebies)
+            session.commit()
         
     session.commit()
     session.close()
