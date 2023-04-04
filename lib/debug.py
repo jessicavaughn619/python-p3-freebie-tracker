@@ -37,33 +37,41 @@ if __name__ == '__main__':
 # Freebie.company
     company = session.query(Freebie.company)
 
-# Freebie aggregates
-    def print_details():
-        freebie = session.query(Freebie).first()
-        print(f"{freebie.dev.name} owns a {freebie.item_name} from {freebie.company.name}.")
+# # Freebie aggregates
+#     def print_details():
+#         freebie = session.query(Freebie).first()
+#         print(f"{freebie.dev.name} owns a {freebie.item_name} from {freebie.company.name}.")
 
-# Company aggregates
-    def give_freebie(dev, item_name, value):
-        company = session.query(Company).filter_by(id=dev).first()
-        freebie = Freebie(
-            item_name=item_name,
-            value=value,
-            company_id=company.id,
-            dev_id=dev
-        )
-        session.add(freebie)
-        session.commit()
+# # Company aggregates
+#     def give_freebie(dev, item_name, value):
+#         company = session.query(Company).filter_by(id=dev).first()
+#         freebie = Freebie(
+#             item_name=item_name,
+#             value=value,
+#             company_id=company.id,
+#             dev_id=dev
+#         )
+#         session.add(freebie)
+#         session.commit()
 
-    @classmethod 
-    def oldest_company():
-        return [record for record in session.query(Company).order_by(Company.founding_year.desc()).first()]
+    # @classmethod 
+    # def oldest_company():
+    #     companies_by_age = [record for record in session.query(Company).order_by(Company.founding_year.desc())]
+    #     first = companies_by_age[0]
+    #     return first
 
-# Dev aggregates
-    def received_one(item_name):
-        freebies = session.query(Freebie).filter_by()
+# # Dev aggregates
+#     def received_one(item_name):
+#         for item_name in dev:
+#             if item_name == item_name:
+#                 return True
+#             return False
 
-    def give_away(dev, freebie):
-        pass
+    def give_away(self, dev, freebie):
+        my_freebies = [record for record in session.query(Freebie).filter_by(dev_id=self.id)]
+        if freebie in my_freebies:
+            freebie.dev = dev
+
 
 
 
