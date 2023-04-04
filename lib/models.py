@@ -16,7 +16,7 @@ class Company(Base):
     id = Column(Integer())
     name = Column(String())
     founding_year = Column(Integer())
-
+    
     def __repr__(self):
         return f'Id: {self.id} ' \
             + f'Company: {self.name} ' \
